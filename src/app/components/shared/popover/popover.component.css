@@ -1,0 +1,18 @@
+.popover {
+    font-size: .75em;
+    padding: 1em;
+    box-shadow: 0 .125rem 1rem rgba(0, 0, 0, .08);
+    position: absolute;
+    right: -15%;
+    background-color: white;
+    z-index: 500;
+    height: 3em;
+    border-radius: .5em;
+}
+
+@media screen and (max-width: 1900px) {
+    .popover {
+        right: 0;
+        font-size: 1em;
+    }
+}

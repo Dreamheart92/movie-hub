@@ -1,0 +1,21 @@
+<app-carousel [slides]="carouselMovies"></app-carousel>
+
+<div class="search-wrapper">
+    <div class="heading">
+        <h1>Welcome</h1>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptate excepturi atque molestiae ad rem,
+            deserunt impedit! Tempora animi in quaerat consectetur possimus ratione amet architecto placeat deleniti
+            fugiat, at aliquid!</p>
+    </div>
+    <div class="search">
+        <app-search></app-search>
+    </div>
+</div>
+
+<app-movies-categories [type]="'movies'" [movies]="moviesNowPlaying" [category]="'Now playing'"
+    [url]="'/browse/movies/now-playing'"></app-movies-categories>
+<app-movies-categories [movies]="movies" [type]="'movies'" [category]="'Popular'"
+    [url]="'/browse/movies/popular'"></app-movies-categories>
+<app-movies-categories [movies]="trendingTvShowsThisWeek"
+    [category]="'Trending tv shows this week'"></app-movies-categories>
+<app-movies-categories [movies]="movies" [type]="'movies'" [category]="'Tv series'"></app-movies-categories>

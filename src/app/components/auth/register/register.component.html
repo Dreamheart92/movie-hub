@@ -1,0 +1,70 @@
+<div class="container">
+    <div class="wrapper">
+        <header>
+            <h5>Sign up</h5>
+        </header>
+        <main>
+            <form id="form" #registerForm="ngForm">
+                <label for="username" id="username"></label>
+                <input ngModel type="text" name="username" ngModel placeholder="Username" required [minlength]="3"
+                    id="username">
+
+                <div *ngIf="registerForm.controls?.['username']?.dirty" class="errors">
+                    <p *ngIf="registerForm.controls?.['username']?.errors?.['required']">Username is required
+                    </p>
+                    <p *ngIf="registerForm.controls?.['username']?.errors?.['minlength'] ">Username must be at least 3
+                        characters
+                    </p>
+                </div>
+
+                <label for="email" id="email"></label>
+                <input ngModel type="text" name="email" ngModel placeholder="E-mail" email required id="email">
+
+                <div *ngIf="registerForm.controls?.['email']?.dirty" class="errors">
+                    <p *ngIf="registerForm.controls?.['email']?.errors?.['required']">Email is required
+                    </p>
+                    <p *ngIf="registerForm.controls?.['email']?.errors?.['email'] ">Invalid email adress
+                    </p>
+                </div>
+
+                <label for="password" id="password"></label>
+                <input ngModel type="password" ngModel placeholder="Password" required minlength="6" name="password"
+                    id="password">
+
+                <div *ngIf="registerForm.controls?.['password']?.dirty" class="errors">
+                    <p *ngIf="registerForm.controls?.['password']?.errors?.['required']">Password is required
+                    </p>
+                    <p *ngIf="registerForm.controls?.['password']?.errors?.['minlength'] ">Password must be at least 6
+                        characters
+                    </p>
+                </div>
+
+                <label for="repeatPassword" id="repeatPassword"></label>
+                <input ngModel type="password" ngModel placeholder="Repeat password" required minlength="6"
+                    name="repeatPassword" id="repeatPassword">
+
+                <div *ngIf="registerForm.controls?.['repeatPassword']?.dirty" class="errors">
+                    <p *ngIf="registerForm.controls?.['repeatPassword']?.errors?.['required']">Password is required
+                    </p>
+                    <p *ngIf="registerForm.controls?.['repeatPassword']?.errors?.['minlength'] ">Password must be at
+                        least 6
+                        characters
+                    </p>
+                </div>
+
+                <button (click)="onSubmit()" [class.btn-disabled]="!registerForm.valid || isSubmited" class="btn"
+                    [disabled]="!registerForm.valid">
+                    Sign up</button>
+
+                <div class="errors">
+                    <p *ngIf="registerForm.control.get('password')?.hasError('passwordMismatch')">Passwords doesn't
+                        match
+                    </p>
+                    <p *ngIf="errorMessage">{{errorMessage}}</p>
+                </div>
+
+                <p class="reset-password"><a routerLink="/login">Already registered? Sign in</a></p>
+            </form>
+        </main>
+    </div>
+</div>

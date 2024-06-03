@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "movie-hub-224c5": {
+      "hosting": {
+        "movie-hub": [
+          "movie-hub-224c5"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "movie-hub-224c5"
+  }
+}

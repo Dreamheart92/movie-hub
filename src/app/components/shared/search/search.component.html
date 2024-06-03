@@ -1,0 +1,20 @@
+<div #searchBar class="search-bar">
+    <form (input)="onSearch()" #searchForm="ngForm">
+        <input autocomplete="off" name="search" id="search" class="search" type="text" ngModel placeholder="Search...">
+        <i *ngIf="searchForm.dirty" (click)="closeSearchButton()" class="bi bi-x-lg close-search"></i>
+    </form>
+    <div #searchResults class="search-results" *ngIf="searching">
+        <h5 *ngIf="searchedMovies.results.length > 0">Movies
+            <hr>
+        </h5>
+        <app-movie-card *ngFor="let movie of searchedMovies.results.slice(0,3)" [movie]="movie"
+            [imgSize]="{width:'5em',height:'5em'}"></app-movie-card>
+        <h5 *ngIf="searchedTvShows.results.length > 0">Tv shows
+            <hr>
+        </h5>
+        <app-movie-card *ngFor="let movie of searchedTvShows.results.slice(0,3)" [movie]="movie"
+            [type]="'tv'"></app-movie-card>
+        <h6 *ngIf="searchedMovies.results.length <= 0 && searchedTvShows.results.length <= 0"> No results found.
+        </h6>
+    </div>
+</div>

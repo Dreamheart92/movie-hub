@@ -1,0 +1,106 @@
+<app-popover *ngIf="isPopoverShown" [string]="popoverMessage"></app-popover>
+
+<div class="wrapper">
+    <div class="movie-data-container">
+        <div class="trailer">
+            <iframe *ngIf="!data.trailerKey.endsWith('undefined')" width="100%" height="100%"
+                [src]="data.trailerKey | safeUrl" frameborder="0"></iframe>
+            <img *ngIf="data.trailerKey.endsWith('undefined')" class="movie-poster"
+                src="https://image.tmdb.org/t/p/original{{data.movie.backdrop_path}}" alt="">
+        </div>
+        <div class="movie-info">
+            <div class="movie-info-wrapper">
+                <div class="user-rating">
+                    <i class="bi bi-star-fill"></i>
+                    <p>{{data.movie.vote_average.toFixed(1)}}</p>
+                </div>
+                <div class="content">
+                    <div class="release-date">
+                        <i class="content-icons bi bi-calendar"></i>
+                        <p>{{data.releaseDate}}</p>
+                    </div>
+                    <p>/</p>
+                    <div class="runtime">
+                        <i class="content-icons bi bi-clock"></i>
+                        <p>{{data.runtime}}</p>
+                    </div>
+                </div>
+                <div class="genre-tags">
+                    <app-tag *ngFor="let genre of data.movie.genres"
+                        [element]="{name: genre.name,id: genre.id,query: 'genre', type: data.type}"></app-tag>
+                </div>
+                <h4 class="movie-title">{{data.title}}</h4>
+                <h5>{{data.movie.tagline}}</h5>
+                <div class="controls">
+                    <button #btnLikeMovie [routerLink]="routerLink"
+                        (mouseover)="!isLoggedIn ? showSignInText($event) : null"
+                        (mouseleave)="!isLoggedIn ? restoreTextContent($event) : null" (click)="handleLikeAction()"
+                        class="btn btn-like">
+                        {{!this.isLoggedIn ? 'Like' : this.data.isLikedTheMovie ? 'Unlike' : 'Like'}}
+                    </button>
+                    <button [routerLink]="routerLink" #btnWatchlist
+                        (mouseover)="!isLoggedIn ? showSignInText($event) : null"
+                        (mouseleave)="!isLoggedIn ? restoreTextContent($event) : null" (click)="handleWatchlistAction()"
+                        class="btn btn-watch-list">
+                        {{!this.isLoggedIn ?
+                        'Watchlist'
+                        : this.data.isAddedMovieToTheWatchlist
+                        ? 'Remove from watchlist' : 'Watchlist'}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="additional-info">
+    <div class="left-content">
+        <div class="movie-summary">
+            <h5>Overview</h5>
+            <p>{{data.movie.overview}}</p>
+        </div>
+        <div class="cast">
+            <h5 class="cast-heading">Top cast</h5>
+            <div class="actor-cast">
+                <div *ngFor="let actor of data.cast?.slice(0,7)" class="actor-card">
+                    <a routerLink="/celebs/details/{{actor.id}}">
+                        <img class="actor-poster" src="https://image.tmdb.org/t/p/w200{{actor.profile_path}}" alt=""
+                            srcset="">
+                        <h6 class="actor-name">{{actor.name | sliceTextAddPeriods : 10}}</h6>
+                        <h6 class="actor-character">{{actor.character | sliceTextAddPeriods : 10}}</h6>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="side-content">
+        <h5>{{data.type === 'movie' ? 'Directed by' : 'Created by'}}</h5>
+        <p>{{data.director}}</p>
+
+        <h5>Country</h5>
+        <p>{{data.movie.production_countries[0].name}}</p>
+
+        <ng-container *ngIf="data.type === 'movie'">
+            <h5>Budget</h5>
+            <p>{{movieUtility.usDollarFormater().format(data.movie.budget)}}</p>
+
+            <h5>Revenue</h5>
+            <p>{{movieUtility.usDollarFormater().format(data.movie.revenue)}}</p>
+        </ng-container>
+
+        <ng-container *ngIf="data.type === 'tv'">
+            <h5>Seasons</h5>
+            <p>{{data.seasons}}</p>
+
+            <h5>Episodes</h5>
+            <p>{{data.episodes}}</p>
+        </ng-container>
+
+        <ng-container *ngIf="data.keywords.length > 0">
+            <h5>Tags</h5>
+            <div class="keyword-tags">
+                <app-tag *ngFor="let keyword of data.keywords" [backgroundColor]="'#2980b9'" [textColor]="'white'"
+                    [element]="{name: keyword.name, id : keyword.id.toString(),query: 'tag',type:data.type}"></app-tag>
+            </div>
+        </ng-container>
+    </div>
+</div>

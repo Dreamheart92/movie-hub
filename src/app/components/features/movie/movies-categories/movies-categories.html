@@ -1,0 +1,39 @@
+<section class="movies-categories">
+    <header>
+        <h5 class="category-heading">{{category}}</h5>
+        <div class="header">
+            <hr>
+            <p><a [routerLink]="url" [queryParams]="queryParams">View all</a></p>
+        </div>
+    </header>
+    <section class="wrapper">
+        <section class="carousel">
+            <div #blank class="card card-blank"></div>
+            <article id="{{i}}" #card
+                (mouseenter)="screenWidth() >= 1400 ? onMouseEnter(card,poster,backdrop1,blank) : null"
+                (mouseleave)="screenWidth() >= 1400 ? onMouseLeave(card,poster,backdrop1,blank) : null"
+                *ngFor="let movie of movies.slice(0,slidersCount()) let i = index;" class="card">
+                <a routerLink="/{{urlPath}}/details/{{movie.id}}">
+                    <img #poster class="poster"
+                        [src]="movie.poster_path !== null ? 'https://image.tmdb.org/t/p/w500' + movie.poster_path : '../../../../../assets/placeholder-image.jpg'"
+                        alt="" srcset="">
+                    <div #backdrop1 class=" backdrop-wrapper">
+                        <div class="backdrop-content">
+                            <div class="content">
+                                <h6>{{type === 'movies' ? movie['release_date'].slice(0,4) :
+                                    movie['first_air_date'].slice(0,4)}}</h6>
+                                <h6>{{type === 'movies' ? movie.title : movie['name']}}</h6>
+                            </div>
+                            <div class="rating">
+                                <i class="bi bi-star-fill"></i>
+                                <p class="rating-text">{{movie.vote_average.toFixed(1)}}</p>
+                            </div>
+                        </div>
+                        <img #backdrop class="backdrop" src="https://image.tmdb.org/t/p/w500{{movie.backdrop_path}}"
+                            alt="" srcset="">
+                    </div>
+                </a>
+            </article>
+        </section>
+    </section>
+</section>

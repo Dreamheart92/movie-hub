@@ -1,0 +1,32 @@
+<div class="message">
+    <h4>Browse celebs</h4>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque at ex repellat nulla laudantium aliquam laboriosam
+        neque, molestias, dolore, consequuntur quam architecto culpa eveniet ut ab. Facilis vero ab voluptate?</p>
+</div>
+
+<div class="wrapper">
+    <div class="loading" *ngIf="isLoading()">
+        <app-spinner></app-spinner>
+    </div>
+    <ng-container *ngIf="!isLoading()">
+        <ng-container *ngFor="let celeb of celebs">
+            <a routerLink="/celebs/details/{{celeb.id}}">
+                <div class="celeb-card">
+                    <div class="poster">
+                        <img src="https://image.tmdb.org/t/p/w200{{celeb.profile_path}}" alt="">
+                    </div>
+                    <div class="content">
+                        <h6>Name</h6>
+                        <p>{{celeb.name}}</p>
+
+                        <h6>Known for</h6>
+                        <p>{{getKnownFor(celeb)}}</p>
+                    </div>
+                </div>
+            </a>
+        </ng-container>
+    </ng-container>
+</div>
+<div class="pagination">
+    <app-pagination [currentPage]="currentPage" [pages]="pages"></app-pagination>
+</div>

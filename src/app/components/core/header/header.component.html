@@ -1,0 +1,130 @@
+<div class="wrapper">
+    <header>
+        <nav>
+            <a class="logo" routerLink="/">MovieHub</a>
+            <i (click)="mobileMenuToggle()" class="bi bi-list mobile-menu-icon"></i>
+            <div class="menu">
+                <ul>
+                    <li class="movies">Movies
+                        <ul class="dropdown">
+                            <a routerLink="/browse/movies/popular">
+                                <li>Popular
+                                </li>
+                            </a>
+                            <a routerLink="/browse/movies/now-playing">
+                                <li>Now playing</li>
+                            </a>
+                            <a routerLink="/browse/movies/upcoming">
+                                <li>
+                                    Upcoming</li>
+                            </a>
+                            <a routerLink="/browse/movies/top-rated">
+                                <li>Top
+                                    rated</li>
+                            </a>
+                        </ul>
+                    </li>
+                    <li class="movies">TV Shows
+                        <ul class="dropdown">
+                            <a routerLink="/browse/tv/airing-today">
+                                <li>Airing
+                                    today</li>
+                            </a>
+                            <a routerLink="/browse/tv/on-the-air">
+                                <li>On the
+                                    air</li>
+                            </a>
+                            <a routerLink="/browse/tv/top-rated">
+                                <li>Most
+                                    rated</li>
+                            </a>
+                            <a routerLink="/browse/tv/popular">
+                                <li>Popular
+                                </li>
+                            </a>
+                        </ul>
+                    </li>
+                    <li><a routerLink="/browse/celebs/list">Celebs</a></li>
+                </ul>
+            </div>
+
+            <div class="search">
+                <app-search></app-search>
+            </div>
+
+            <div class="user-links">
+                <ul>
+                    @if (authService.isLoggedIn() !== false) {
+                    <i routerLink="/profile" class="bi bi-person-circle profile-icon"></i>
+                    <li (click)="onLogout()">Logout</li>
+                    } @else {
+                    <li><a routerLink="/login">Login</a></li>
+                    <li><a routerLink="/register">Register</a></li>
+                    }
+                </ul>
+            </div>
+        </nav>
+    </header>
+</div>
+
+<div #mobileMenu class="mobile-menu">
+    <header>
+        <a class="logo-mobile" routerLink="/">MovieHub</a>
+        <h5 (click)="mobileMenuToggle()">Close</h5>
+    </header>
+
+    <h5 (click)="dropdownToggle(moviesDropdown)" class="mobile-heading">Movies</h5>
+    <div #moviesDropdown class="mobile-dropdown-movies">
+        <a routerLink="/browse/movies/popular">
+            <h5>
+                Upcoming</h5>
+        </a>
+        <a routerLink="/browse/movies/now-playing">
+            <h5>Now playing</h5>
+        </a>
+        <a routerLink="/browse/movies/upcoming">
+            <h5>Most
+                rated</h5>
+        </a>
+        <a routerLink="/browse/movies/top-rated">
+            <h5>Popular
+            </h5>
+        </a>
+    </div>
+
+    <h5 (click)="dropdownToggle(tvShowsDropdown)" class="mobile-heading">Tv Shows</h5>
+    <div #tvShowsDropdown class="mobile-dropdown-movies">
+        <a routerLink="/browse/tv/airing-today">
+            <h5>Airing
+                today</h5>
+        </a>
+        <a routerLink="/browse/tv/on-the-air">
+            <h5>On the
+                air</h5>
+        </a>
+        <a routerLink="/browse/tv/top-rated">
+            <h5>Top
+                rated</h5>
+        </a>
+        <a routerLink="/browse/tv/popular">
+            <h5>Popular
+            </h5>
+        </a>
+    </div>
+
+    <h5 class="mobile-heading"><a routerLink="/browse/celebs/list">Celebs</a></h5>
+
+    <hr>
+
+    <div class="mobile-user">
+        @if (authService.isLoggedIn() !== false) {
+        <h5><a routerLink="/profile">Profile</a></h5>
+        <h5 (click)="onLogout()">Logout</h5>
+        } @else {
+        <h5><a routerLink="/login">Login</a></h5>
+        <h5><a routerLink="/register">Register</a></h5>
+        }
+    </div>
+
+
+</div>

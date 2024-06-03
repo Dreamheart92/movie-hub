@@ -1,0 +1,141 @@
+hr {
+    margin-bottom: 1em;
+    width: 94%;
+}
+
+a {
+    text-decoration: none;
+}
+
+.movies-categories {
+    margin-top: 1em;
+    height: 100%;
+}
+
+.movies-categories header {
+    width: 100%;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+}
+
+.category-heading {
+    margin-bottom: .25em;
+}
+
+.wrapper {
+    width: 100%;
+    height: 12.9em;
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+
+.carousel {
+    height: 100%;
+    width: 100em;
+    display: flex;
+    flex-wrap: wrap;
+    gap: .25em;
+    transform: translateX(-9em);
+}
+
+.card {
+    width: 8.5em;
+    transition: width 0.4s;
+    height: 12.9em;
+    position: relative;
+}
+
+.card img {
+    object-fit: cover;
+    object-position: center center;
+    width: 100%;
+    height: 12.9em;
+    border-radius: .5em;
+}
+
+.backdrop-wrapper {
+    position: relative;
+}
+
+.backdrop-wrapper h6 {
+    padding: 0;
+    margin: 0;
+}
+
+.backdrop-content {
+    position: absolute;
+    color: white;
+    width: 100%;
+    left: 5%;
+    z-index: 20;
+    height: 100%;
+}
+
+.rating {
+    position: absolute;
+    right: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .25em;
+}
+
+.rating i {
+    color: #f1c40f;
+}
+
+.rating-text {
+    margin-top: 1.25em;
+    font-size: .75em;
+}
+
+.content {
+    position: absolute;
+    top: 75%;
+    color: white;
+}
+
+.wrapper::-webkit-scrollbar {
+    /* for chrome */
+    display: none;
+}
+
+.carousel::-webkit-scrollbar {
+    display: none;
+}
+
+@media screen and (max-width: 1400px) {
+    hr {
+        width: 85%;
+    }
+
+    .carousel {
+        flex-wrap: nowrap;
+        transform: translateX(0);
+        width: 100%;
+        overflow-y: hidden;
+        overflow-x: auto;
+        gap: 1em;
+    }
+
+    .card {
+        transition: none;
+    }
+
+    .movies-categories header {
+        padding: 0 1em;
+    }
+
+    .card-blank {
+        display: none;
+    }
+
+    .card img {
+        width: 9em;
+    }
+}

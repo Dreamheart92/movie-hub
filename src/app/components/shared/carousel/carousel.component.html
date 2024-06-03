@@ -1,0 +1,18 @@
+<section class="carousel">
+    <i class="bi bi-chevron-compact-left arrows arrow-left" (click)="slideLeft()"></i>
+    <section #sliderContent class="content">
+        <section *ngFor="let movie of slides.slice(0,slidersCount)" class="movie-card">
+            <a routerLink="/movie/details/{{movie.id}}">
+                <div class="movie-poster">
+                    <img src="https://image.tmdb.org/t/p/original{{movie.backdrop_path}}" alt="">
+                </div>
+                <div class="movie-content">
+                    <h5 class="header">Trending today</h5>
+                    <h3 class="movie-title">{{movie.title}}</h3>
+                    <button class="movie-view-btn" routerLink="/movie/details/{{movie.id}}">View movie</button>
+                </div>
+            </a>
+        </section>
+    </section>
+    <i class="bi bi-chevron-compact-right arrows arrow-right" (click)="slideRight()"></i>
+</section>

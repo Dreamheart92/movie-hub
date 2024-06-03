@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="values">
+    </div>
+    <div class="wrapper">
+        <h6>{{minSlider}}</h6>
+        <div #wrapper class="slider-container">
+            <div #backgroundRange (click)="slideToPosition($event)" class="background-range"></div>
+            <div #backgroundSlider (click)="slideToPosition($event)" class="slider-range"></div>
+            <div (touchstart)="mouseClick('left')" (mousedown)="mouseClick('left')" #leftThumb class="left-thumb thumb">
+            </div>
+            <div (touchstart)="mouseClick('right')" (mousedown)="mouseClick('right')" #rightThumb
+                class="right-thumb thumb"></div>
+        </div>
+        <h6>{{maxSlider}}</h6>
+    </div>
+</div>

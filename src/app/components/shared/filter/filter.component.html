@@ -1,0 +1,18 @@
+<div class="filters-box">
+    <hr>
+    <header>
+        <h6 class="filter-headings">{{elementType.toUpperCase().replaceAll('-',' ')}}</h6>
+        <i *ngIf="elements.length > 5" #dropFilterIcon (click)="showMore()"
+            class="bi dropdown-icon {{isFiltersShown ? 'bi-chevron-compact-up' : 'bi-chevron-compact-down'}}"></i>
+    </header>
+    <div #filters class="filters">
+        <div *ngFor="let element of elements.slice(0,baseElementCount)" class="checkbox">
+            <a class="checkbox" [routerLink]="element.url">
+                <div (click)="selectFilter(element)" class="box">
+                    <i [class.checked]="element.selected" #checkedIcon class="bi bi-check"></i>
+                </div>
+                <h6 class="box-name">{{element.name}}</h6>
+            </a>
+        </div>
+    </div>
+</div>

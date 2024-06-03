@@ -1,0 +1,64 @@
+hr {
+    margin: 1em 0;
+}
+
+h6 {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    width: 100%;
+}
+
+.filters-box {
+    margin: 1em 0;
+}
+
+.filters-box .bi-check {
+    display: none;
+}
+
+.filters-box header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.filters-box .dropdown-icon {
+    cursor: pointer;
+}
+
+.checkbox {
+    margin-top: .75em;
+    display: flex;
+    gap: .45em;
+    align-items: center;
+}
+
+.box {
+    border: .05em solid #000000;
+    width: .90em;
+    height: .90em;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+
+.box-name {
+    width: 100%;
+    height: 1.2em;
+    font-weight: 400;
+}
+
+.checked {
+    width: 100%;
+    height: 100%;
+    display: block !important;
+    background-color: black;
+    color: white;
+    font-size: .70em;
+}
+
+.filter-headings {
+    margin-bottom: 0.5em;
+}

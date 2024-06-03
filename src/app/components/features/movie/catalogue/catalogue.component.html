@@ -1,0 +1,66 @@
+<div #mobileFilters class="mobile-filters">
+    <header class="mobile-filters-header">
+        <h5>Filters</h5>
+        <h5 (click)="mobileFiltersToggle()">Close</h5>
+    </header>
+    <hr>
+    <h6 class="slider-heading">RELEASE YEAR</h6>
+    <app-range-slider [minValue]="releaseYearRange.minYear" [maxValue]="releaseYearRange.maxYear"></app-range-slider>
+    <app-filter [elements]="genres" [elementType]="'genre'"></app-filter>
+    <app-filter [elements]="releaseTypeFilters" [elementType]="'release-type'" [oneOptionOnly]="true"></app-filter>
+</div>
+
+<div class="wrapper">
+    <div class="heading">
+        <h3>Welcome</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur necessitatibus dolores doloremque magnam
+            in, sunt reiciendis itaque molestiae, excepturi tempora voluptatum. Vitae soluta dolore libero velit ratione
+            animi iusto totam!</p>
+    </div>
+</div>
+
+<div class="catalogue">
+    <div class="sidebar">
+        <header>
+            <h5>Filters</h5>
+        </header>
+        <hr>
+        <h6 class="slider-heading">RELEASE YEAR</h6>
+        <app-range-slider [minValue]="releaseYearRange.minYear"
+            [maxValue]="releaseYearRange.maxYear"></app-range-slider>
+        <app-filter [elements]="genres" [elementType]="'genre'"></app-filter>
+        <app-filter [elements]="releaseTypeFilters" [elementType]="'release-type'" [oneOptionOnly]="true"></app-filter>
+    </div>
+
+    <div *ngIf="!isLoading()" class="content">
+
+        <header>
+            <div class="mobile-filter-popup">
+                <i (click)="mobileFiltersToggle()" class="bi bi-list mobile-filter-icon"></i>
+            </div>
+            <div class="sort-by-filter-wrapper">
+                <form (change)="onSortBy()" #sortByForm="ngForm">
+                    <label for="sort-by"></label>
+                    <select id="sortBy" [(ngModel)]="defaultValue" value="defaultValue" name="sortBy">
+                        <option *ngFor="let option of sortByOptions" value="{{option}}">{{option}}</option>
+                    </select>
+                </form>
+            </div>
+        </header>
+
+        <div *ngIf="movies.length <= 0 || !validPage" class="no-results">
+            <h5>No results found</h5>
+            <p>Seems like we don't have results for that.</p>
+            <p>Try adding or removing different filters.</p>
+        </div>
+
+        <app-movie-card *ngFor="let movie of movies" [movie]="movie" [type]="type"></app-movie-card>
+        <div class="pagination">
+            <app-pagination *ngIf="showPagination" [validPage]="validPage()" [currentPage]="currentPage"
+                [pages]="pages"></app-pagination>
+        </div>
+    </div>
+    <div *ngIf="isLoading()" class="loading">
+        <app-spinner></app-spinner>
+    </div>
+</div>

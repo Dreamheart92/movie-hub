@@ -1,0 +1,22 @@
+<div class="filmography">
+    <table [cellSpacing]="0" id="filmography">
+        <tr>
+            <th>Title</th>
+            <th>Character</th>
+            <th class="th-year" (click)="sortByYear()"> Year <i [ngClass]="{
+                    'bi-arrow-down-square-fill': dropdownArrowYear.asc && filterSelected.sortByYear,
+                    'bi-arrow-up-square-fill': dropdownArrowYear.desc && filterSelected.sortByYear
+                }" [class.hide]="!filterSelected.sortByYear" class="bi dropdownArrow"></i></th>
+            <th (click)="sortByRating()" class="th-rating">Rating <i [ngClass]="{
+                'bi-arrow-up-square-fill': dropdownArrowRating.asc && filterSelected.sortByRating,
+                'bi-arrow-down-square-fill': dropdownArrowRating.desc && filterSelected.sortByRating
+            }" [class.hide]="!filterSelected.sortByRating" class="bi dropdownArrow dropdownArrow-rating"></i></th>
+        </tr>
+        <tr *ngFor="let movie of credits">
+            <td><a routerLink="/{{type==='tv' ? 'tv' : 'movie'}}/details/{{movie.id}}">{{movie.title}}</a></td>
+            <td>{{movie.character === '' ? '-' : movie.character}}</td>
+            <td>{{movie.release_date === '' ? '-' : movie.release_date|date :'YYYY'}}</td>
+            <td>{{movie.vote_average.toFixed(1)}}</td>
+        </tr>
+    </table>
+</div>

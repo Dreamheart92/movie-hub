@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="wrapper">
+        <header>
+            <h5>Sign in</h5>
+        </header>
+        <main>
+            <form id="form" #loginForm="ngForm">
+                <label for="email" id="email"></label>
+                <input ngModel type="text" name="email" ngModel placeholder="E-mail" email required id="email">
+
+                <div *ngIf="loginForm.controls?.['email']?.dirty" class="errors">
+                    <p *ngIf="loginForm.controls?.['email']?.errors?.['required']">Email is required
+                    </p>
+                    <p *ngIf="loginForm.controls?.['email']?.errors?.['email'] ">Invalid email adress
+                    </p>
+                </div>
+
+                <label for="password" id="password"></label>
+                <input ngModel type="password" ngModel placeholder="Password" required minlength="6" name="password"
+                    id="password">
+
+                <div *ngIf="loginForm.controls?.['password']?.dirty" class="errors">
+                    <p *ngIf="loginForm.controls?.['password']?.errors?.['required']">Password is required
+                    </p>
+                    <p *ngIf="loginForm.controls?.['password']?.errors?.['minlength'] ">Password must be at least 6
+                        characters
+                    </p>
+                </div>
+
+                <div *ngIf="errorMessage" class="errors">
+                    <p>{{errorMessage}}</p>
+                </div>
+
+                <button (click)="onLogin()" [class.btn-disabled]="!loginForm.valid || isSubmited" class="btn"
+                    [disabled]="!loginForm.valid">
+                    Sign in</button>
+                <button class="btn" routerLink="/register">Creat account</button>
+
+                <p class="reset-password"><a routerLink="#">Forgot your password?</a></p>
+            </form>
+        </main>
+    </div>
+</div>

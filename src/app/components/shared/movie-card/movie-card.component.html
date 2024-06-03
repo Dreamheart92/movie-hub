@@ -1,0 +1,26 @@
+<div class="movie-card">
+    <div class="img">
+        <a routerLink="/{{type==='tv' ? 'tv' : 'movie'}}/details/{{movie.id}}">
+            <img [src]="movie.poster_path !== null ? 'https://image.tmdb.org/t/p/w500' + movie.poster_path : '../../../../../assets/placeholder-image.jpg'"
+                alt="">
+        </a>
+    </div>
+    <div class="movie-content">
+        <a routerLink="/{{type==='tv' ? 'tv' : 'movie'}}/details/{{movie.id}}">
+            <div class="content-heading">
+                <h5 class="movie-title">{{type === 'tv' ? movie.name : movie.title}}</h5>
+                <h6 class="release-date">{{(type === 'tv' ? movie.first_air_date : movie.release_date)| date:
+                    'shortDate'}}
+                </h6>
+            </div>
+            <p>{{movie.overview | sliceTextAddPeriods: movieContentTextSize}}</p>
+        </a>
+        <footer>
+            <app-tag *ngFor="let genre of movie.genresNames"
+                [element]="{name: genre.name, id: genre.id, query: 'genre', type:type}"></app-tag>
+            <div [ngStyle]="determineColorBasedOnUserRating(movie.vote_average)" class="user-rating">
+                <h6 class="rating">{{movie.vote_average.toFixed(1)}}</h6>
+            </div>
+        </footer>
+    </div>
+</div>

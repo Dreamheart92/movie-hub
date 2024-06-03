@@ -1,0 +1,58 @@
+.filmography {
+    width: 100%;
+    height: 100%;
+}
+
+#filmography {
+    width: 100%;
+}
+
+#filmography td {
+    padding: 1em;
+    font-size: .75em;
+    width: 50%;
+}
+
+#filmography tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#filmography tr:hover {
+    background-color: #ddd;
+}
+
+#filmography th {
+    font-size: .75em;
+    padding: .5em 1em .2em 1em;
+    border-bottom: .2em solid #949494;
+    text-align: left;
+    color: black;
+    background-color: white;
+}
+
+.credits-type {
+    font-size: .8em;
+    margin: .5em 0;
+}
+
+.th-year,
+.th-rating {
+    cursor: pointer;
+    position: relative;
+}
+
+.dropdownArrow {
+    position: absolute;
+    right: 0;
+    top: 60%;
+    transform: translateY(-50%);
+}
+
+.dropdownArrow-rating {
+    position: absolute;
+    right: -5%;
+}
+
+.hide {
+    display: none;
+}

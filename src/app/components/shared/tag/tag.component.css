@@ -1,0 +1,13 @@
+.genre-name {
+    width: 100%;
+    padding: .4em;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
+span {
+    font-size: .7em;
+}

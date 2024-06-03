@@ -1,0 +1,97 @@
+.wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    box-shadow: 0 .125rem 1rem rgba(0, 0, 0, .08);
+    padding: 1em;
+}
+
+.poster {
+    width: 100%;
+    height: 100%;
+}
+
+.poster img {
+    padding: 1em;
+    width: 100%;
+    height: 100%;
+    border-radius: 2em;
+}
+
+.content {
+    padding: 2em 2em 2em 1em;
+    width: 70%;
+    height: 100%;
+}
+
+.content p {
+    font-size: .75em;
+}
+
+.personal-info {
+    padding: 1em;
+}
+
+.most-popular-movies {
+    margin-top: 1em;
+    width: 100%;
+    height: 100%;
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+
+.most-popular-movies main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    gap: .5em;
+}
+
+.movie-card {
+    width: 7em;
+    height: 10em;
+}
+
+.movie-card img {
+    width: 7em;
+    height: 100%;
+    border-radius: .5em;
+    cursor: pointer;
+}
+
+.filmography {
+    padding-top: 2em;
+}
+
+.tv-table-heading {
+    padding: .7em 0;
+    margin: 0;
+}
+
+.most-popular-movies::-webkit-scrollbar {
+    /* for chrome */
+    display: none;
+}
+
+@media screen and (max-width: 600px) {
+    .wrapper {
+        flex-direction: column;
+        font-size: 1.4em;
+    }
+
+    .content {
+        width: 100%;
+        padding: 0 1em 1em 1em;
+        flex-wrap: nowrap;
+        overflow: hidden;
+    }
+
+    .personal-info {
+        display: none;
+    }
+
+    .most-popular-movies {
+        width: 100%;
+        flex-wrap: nowrap;
+    }
+}

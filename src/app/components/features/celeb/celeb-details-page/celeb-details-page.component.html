@@ -1,0 +1,47 @@
+<div class="wrapper">
+    <div class="poster">
+        <img src="https://image.tmdb.org/t/p/original/{{celeb.profile_path}}" alt="" srcset="">
+        <div class="personal-info">
+            <h6>Place of birth</h6>
+            <p *ngIf="celeb.place_of_birth === null">-</p>
+            <p>{{celeb.place_of_birth}}</p>
+
+            <h6>Birthday</h6>
+            <p *ngIf="celeb.birthday === null">-</p>
+            <p>{{celeb.birthday | date : 'fullDate'}}</p>
+
+            <h6>Also known as</h6>
+            <p *ngFor="let title of celeb.also_known_as">{{title}}</p>
+        </div>
+    </div>
+    <div class="content">
+        <h5>Name</h5>
+        <p>{{celeb.name}}</p>
+
+        <h5>Biography</h5>
+        <p *ngIf="biography.length <= 0">We don't have a biography for {{celeb.name}}.</p>
+        <p *ngFor="let chunk of biographyChunks">{{chunk}}</p>
+
+        <div class="most-popular-movies">
+            <header>
+                <h5>Most popular movies</h5>
+            </header>
+            <main>
+                <div *ngFor="let movie of knownFor.slice(0,6)" class="movie-card">
+                    <img routerLink="/movie/details/{{movie.id}}" src="https://image.tmdb.org/t/p/w200/{{movie.poster_path}}" alt="">
+                </div>
+            </main>
+        </div>
+        <div class="filmography">
+            <header>
+                <h5>Filmography</h5>
+            </header>
+            <main>
+                <h5>Movies</h5>
+                <app-filmography-table [credits]="movieCredits" [type]="'movie'"></app-filmography-table>
+                <h5 class="tv-table-heading">TV</h5>
+                <app-filmography-table [credits]="tvCredits" [type]="'tv'"></app-filmography-table>
+            </main>
+        </div>
+    </div>
+</div>

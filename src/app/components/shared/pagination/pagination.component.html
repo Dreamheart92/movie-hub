@@ -1,0 +1,63 @@
+<div>
+    <div *ngIf="validPage" class="valid pagination">
+
+        <i *ngIf="currentPage > 1" (click)="previousPage()"
+            class="bi bi-caret-left-fill pagination-arrows left-arrow"></i>
+        <div class="left-side">
+            <div *ngIf="currentPage > 1" class="page">
+                <a class="page-links" [routerLink]="[]" [queryParams]="{page: 1}" queryParamsHandling="merge">
+                    <h5 class="next-page">
+                        {{1}}
+                    </h5>
+                </a>
+            </div>
+            <h5 *ngIf="currentPage > 3" class="dots">...</h5>
+            <div *ngIf="currentPage > 2" class="page">
+                <a class="page-links" [routerLink]="[]" [queryParams]="{page: currentPage - 1}"
+                    queryParamsHandling="merge">
+                    <h5 class="next-page">
+                        {{currentPage - 1}}
+                    </h5>
+                </a>
+            </div>
+        </div>
+        <div class="active-page page">
+            <h5>{{currentPage}}</h5>
+        </div>
+        <div *ngIf="(pages - currentPage) > 1" class="page">
+            <a class="page-links" [routerLink]="[]" [queryParams]="{page: currentPage + 1}" queryParamsHandling="merge">
+                <h5 class="next-page">
+                    {{currentPage + 1}}
+                </h5>
+            </a>
+        </div>
+        <h5 *ngIf="(pages - currentPage) > 2" class="dots">...</h5>
+        <div *ngIf="currentPage !== pages" class="page">
+            <a class="page-links" [routerLink]="[]" [queryParams]="{page: pages}" queryParamsHandling="merge">
+                <h5 class="next-page">
+                    {{pages}}
+                </h5>
+            </a>
+        </div>
+        <i *ngIf="currentPage < pages" (click)="nextPage()"
+            class="bi bi-caret-right-fill pagination-arrows right-arrow"></i>
+    </div>
+
+    <div *ngIf="!validPage" class="invalid pagination">
+        <div class="page">
+            <a class="page-links" [routerLink]="[]" [queryParams]="{page: 1}" queryParamsHandling="merge">
+                <h5 class="next-page">
+                    {{1}}
+                </h5>
+            </a>
+        </div>
+        <h5>...</h5>
+        <div class="page">
+            <a class="page-links" [routerLink]="[]" [queryParams]="{page: pages}" queryParamsHandling="merge">
+                <h5 class="next-page">
+                    {{pages}}
+                </h5>
+            </a>
+        </div>
+    </div>
+</div>
